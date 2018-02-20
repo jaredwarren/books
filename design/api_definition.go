@@ -11,12 +11,22 @@ var _ = API("Books", func() {
 	Contact(func() {
 		Name("Jared Warren")
 		Email("jlwarren1@gmail.com")
-		URL("jlwarren1.com")
+		URL("http://jlwarren1.com")
 	})
 	Docs(func() {
 		Description("Books Service")
 		URL("http://jlwarren1.com")
 	})
-	Host("localhost:8443")
-	Scheme("https")
+	Host("localhost:8080")
+	// Scheme("https")
+	Scheme("http")
+
+	ResponseTemplate(Created, func(pattern string) {
+		Status(201)
+		Headers(func() {
+			Header("Location", String, "href to created resource", func() {
+				Pattern(pattern)
+			})
+		})
+	})
 })

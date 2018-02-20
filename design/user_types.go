@@ -7,6 +7,7 @@ import (
 
 // BookPayload ...
 var BookPayload = Type("BookPayload", func() {
+	Attribute("id", Integer, "Book ID")
 	Attribute("title", String, "Book title")
 	Attribute("author", String, "Author(s) of the book")
 	Attribute("publisher", String, "Publisher of the book")
@@ -14,8 +15,7 @@ var BookPayload = Type("BookPayload", func() {
 	Attribute("rating", Integer, func() {
 		Minimum(1)
 		Maximum(3)
-		Example(1)
-		Default(1)
+		Default(2)
 	})
 	Attribute("status", func() {
 		Enum("CheckedIn", "CheckedOut")

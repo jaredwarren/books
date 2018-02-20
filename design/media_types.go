@@ -9,6 +9,7 @@ import (
 var Book = MediaType("application/vnd.book+json", func() {
 	Description("A Book")
 	Attributes(func() {
+		Attribute("id", Integer, "Book ID")
 		Attribute("title", String, "Book title")
 		Attribute("author", String, "Author(s) of the book")
 		Attribute("publisher", String, "Publisher of the book")
@@ -26,10 +27,11 @@ var Book = MediaType("application/vnd.book+json", func() {
 		Attribute("created_at", DateTime, "Date of creation")
 		Attribute("updated_at", DateTime, "Date of last change")
 
-		Required("title", "author", "publisher", "publish_date", "rating", "status", "created_at", "created_by")
+		Required("id", "created_at", "updated_at")
 	})
 
 	View("default", func() {
+		Attribute("id")
 		Attribute("title")
 		Attribute("author")
 		Attribute("publisher")
@@ -37,6 +39,6 @@ var Book = MediaType("application/vnd.book+json", func() {
 		Attribute("rating")
 		Attribute("status")
 		Attribute("created_at")
-		Attribute("created_by")
+		Attribute("updated_at")
 	})
 })

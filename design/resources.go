@@ -7,21 +7,18 @@ import (
 
 // Printer API
 var _ = Resource("book", func() {
-	DefaultMedia(BookPayload)
+	DefaultMedia(Book)
 	BasePath("/books")
 
 	Action("list", func() {
-		Routing(
-			GET(""),
-		)
+		Routing(GET(""))
 		Description("Retrieve all books.")
-		Response(OK, CollectionOf(BookPayload))
+		Response(InternalServerError, ErrorMedia)
+		Response(OK, CollectionOf(Book))
 	})
 
 	Action("show", func() {
-		Routing(
-			GET("/:bookID"),
-		)
+		Routing(GET("/:bookID"))
 		Description("Show a book.")
 		Params(func() {
 			Param("bookID", Integer, "Book ID", func() {
@@ -30,48 +27,39 @@ var _ = Resource("book", func() {
 		})
 		Response(OK)
 		Response(NotFound)
-		// Response(BadRequest, ErrorMedia)
+		Response(InternalServerError, ErrorMedia)
 	})
 
 	Action("create", func() {
-		Routing(
-			POST(""),
-		)
+		Routing(POST(""))
 		Description("Create a new book")
-		Payload(func() {
-			Member("title")
-			Required("title")
-		})
+		Payload(BookPayload)
 		Response(Created, "/books/[0-9]+")
-		// Response(BadRequest, ErrorMedia)
+		Response(InternalServerError, ErrorMedia)
 	})
 
 	Action("update", func() {
-		Routing(
-			PUT("/:bookID"),
-		)
+		Routing(PUT("/:bookID"))
 		Description("Change book data")
 		Params(func() {
 			Param("bookID", Integer, "Book ID")
 		})
-		Payload(func() {
-			Member("title")
-			Required("title")
-		})
+		Payload(BookPayload)
 		Response(NoContent)
 		Response(NotFound)
-		// Response(BadRequest, ErrorMedia)
+		Response(InternalServerError, ErrorMedia)
 	})
 
 	Action("delete", func() {
-		Routing(
-			DELETE("/:bookID"),
-		)
+		Routing(DELETE("/:bookID"))
 		Params(func() {
-			Param("bookD", Integer, "Book ID")
+			Param("bookID", Integer, "Book ID", func() {
+				Minimum(1)
+			})
+			Required("bookID")
 		})
 		Response(NoContent)
 		Response(NotFound)
-		// Response(BadRequest, ErrorMedia)
+		Response(InternalServerError, ErrorMedia)
 	})
 })
