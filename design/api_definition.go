@@ -18,7 +18,6 @@ var _ = API("Books", func() {
 		URL("http://jlwarren1.com")
 	})
 	Host("localhost:8080")
-	// Scheme("https")
 	Scheme("http")
 
 	ResponseTemplate(Created, func(pattern string) {

@@ -19,5 +19,5 @@ docker build -t jlwarren1/books .
 
 ## Run
 ```
-docker run -d -P jlwarren1/books
+docker run -d -v /data -p 8080:8080 jlwarren1/books
 ```

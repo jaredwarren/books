@@ -21,17 +21,12 @@ func main() {
 	service.Use(middleware.Recover())
 
 	// Open the books.db data file in current directory.
-	bdb, err := bolt.Open("books.db", 0777, nil)
+	bdb, err := bolt.Open("/data/books.db", 0777, nil)
 	if err != nil {
 		panic(err)
 	}
 
 	err = bdb.Update(func(tx *bolt.Tx) error {
-		// TODO: remove this for production
-		// TODO: remove this for production
-		// TODO: remove this for production
-		tx.DeleteBucket([]byte("Book"))
-
 		if _, err = tx.CreateBucketIfNotExists([]byte("Book")); err != nil {
 			return err
 		}

@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+    books:
+      image: jlwarren1/books
+      deploy:
+        replicas: 1
+        update_config:
+          parallelism: 2
+          delay: 10s
+        restart_policy:
+          condition: on-failure
+      ports:
+        - 8080:8080
+      volumes:
+        - bolt_db:/data
+      restart: always
+volumes: 
+  bolt_db: {}

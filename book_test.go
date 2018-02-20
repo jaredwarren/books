@@ -22,7 +22,7 @@ var sdb *db.BookStore
 func setupTestCase(t *testing.T) func(t *testing.T) {
 	// setup
 	var err error
-	bdb, err := bolt.Open("testbooks.db", 0777, nil)
+	bdb, err := bolt.Open("/data/testbooks.db", 0777, nil)
 	if err != nil {
 		panic(err)
 	}
@@ -45,8 +45,8 @@ func setupTestCase(t *testing.T) func(t *testing.T) {
 
 	return func(t *testing.T) {
 		defer bdb.Close()
-		os.Remove("testbooks.db")
-		os.Remove("testbooks.db.lock")
+		os.Remove("/data/testbooks.db")
+		os.Remove("/data/testbooks.db.lock")
 	}
 }
 
