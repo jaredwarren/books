@@ -6,8 +6,8 @@ import (
 )
 
 var _ = API("Books", func() {
-	Title("Redeam.com Books")
-	Description("Redeam.com Book Test")
+	Title("Books")
+	Description("Book CRUD API")
 	Contact(func() {
 		Name("Jared Warren")
 		Email("jlwarren1@gmail.com")
