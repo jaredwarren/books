@@ -1,4 +1,4 @@
-//go:generate goagen bootstrap -d github.com/jaredwarren/redeam/design
+//go:generate goagen bootstrap -d github.com/jaredwarren/books/design
 
 package main
 
@@ -20,7 +20,7 @@ func main() {
 	service.Use(middleware.ErrorHandler(service, true))
 	service.Use(middleware.Recover())
 
-	// Open the books.db data file in current directory.
+	// Open the books.db
 	bdb, err := bolt.Open("/data/books.db", 0777, nil)
 	if err != nil {
 		panic(err)
@@ -30,7 +30,6 @@ func main() {
 		if _, err = tx.CreateBucketIfNotExists([]byte("Book")); err != nil {
 			return err
 		}
-
 		return nil
 	})
 	if err != nil {

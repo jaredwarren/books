@@ -175,8 +175,8 @@ info:
     email: jlwarren1@gmail.com
     name: Jared Warren
     url: http://jlwarren1.com
-  description: Redeam.com Book Test
-  title: Redeam.com Books
+  description: Book CRUD API
+  title: Books
   version: ""
 paths:
   /_ah/health:

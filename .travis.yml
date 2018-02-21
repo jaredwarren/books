@@ -1,0 +1,9 @@
+language: go
+go:
+  - 1.9.x
+sudo: false
+install:
+  - go get -v ./...
+  - export PATH=$PATH:$HOME/gopath/bin
+script:
+  - make
